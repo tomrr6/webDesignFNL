@@ -1,0 +1,268 @@
+:root {
+    --color_p1: #E10032;
+    --color_p2: #FFCD00;
+    --color_s1: #151B25;
+    --color_s2: #034687;
+    --color_t1: #333333;
+    --color_t2: #666666;
+    --color_t3: #888888;
+    --color_bg: #DBE8E1;
+    --color_activeAttention: #FFEE59;
+    --color_completedSuccess: #42DB42;
+    --color_pendingOnHold: #2D7CCC;
+    --color_errorCritical: #F85959;
+    --color_inProgressWarning: #F8C259;
+    --hamburger-width: 35rem;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.hero {
+    overflow: hidden;
+    /* background-image: url('/img/tempPizzaBG.jfif'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+/* Floating button----------------------------------------------------------------- */
+
+.floatingButton {
+    display: block;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 1rem;
+    background-color: var(--color_p1);
+    color: white;
+    border-radius: 999rem;
+}
+
+
+/* Hamburger Menu ------------------------------------------------- */
+
+#hamburgerMaxArea {
+    background-color: #dc1200a4;
+    height: 100%;
+    width: 33rem;
+    /* make responsive */
+    max-width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* overflow-y: scroll; */
+    backdrop-filter: blur(1rem);
+    clip-path: circle(5rem at 2rem 2rem);
+    transition: clip-path .4s ease-out, width .6s ease-out;
+}
+
+#hamburgerMaxArea:not(.open):hover{
+    /* transition: clip-path .1s ease-out; */
+    clip-path: circle(6rem at 2rem 2rem);
+    background-color: hsla(5, 100%, 60%, 0.643);
+}
+
+#hamburgerMaxArea.open {
+    width: var(--hamburger-width);
+    clip-path: circle(110vh at 0rem 15rem);
+}
+
+#hamburgerArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+#hamburgerArea>a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: .5rem 7rem .5rem 1rem;
+    border-radius: 1rem;
+    max-width: 100vw;
+    background-color: rgba(255, 255, 255, .3);
+    text-decoration: none;
+    color: white;
+    transition: background-color .1s ease-out;
+}
+
+#hamburgerArea>a:hover {
+    background-color: rgba(255, 255, 255, .5);
+}
+
+#hamburgerArea>a.emphasis {
+    background-color: rgba(255, 238, 0, 0.5);
+}
+
+#hamburgerArea>a.emphasis:hover {
+    background-color: rgba(255, 238, 0, 0.6);
+}
+
+#hamburgerArea>h1 {
+    align-self: center;
+    font-size: 3rem;
+    opacity: 0;
+    transform: translateY(2rem);
+    transition: transform .2s ease-out, opacity .1s ease-out;
+}
+
+#hamburgerArea.open>h1 {
+    transition: transform .6s ease-out, opacity .3s ease-out;
+    opacity: 100%;
+    transform: translateY(0rem);
+}
+
+#hamburger {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: fixed;
+    top: -.5rem;
+    left: -.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    border-radius: 999rem;
+    padding: 2rem;
+    opacity: 70%;
+    transition: background-color .2s ease-out, padding .2s ease-out, opacity .2s ease-out;
+    pointer-events: none;
+}
+
+#hamburger:hover,
+#hamburger.open:hover {
+    background-color: rgba(255, 255, 255, .3);
+}
+
+#hamburger:active,
+#hamburger.open:active {
+    background-color: rgba(255, 255, 255, .5);
+    pointer-events: all;
+}
+
+#hamburger.open {
+    background-color: rgba(255, 255, 255, .2);
+    padding: 2.5rem;
+    pointer-events: all;
+}
+
+#hamburger-top,
+#hamburger-mid,
+#hamburger-bottom {
+    width: 100%;
+    height: 15%;
+    border-radius: 999rem;
+    /* background-color: rgba(255, 255, 255, .9); */
+    background-color: white;
+    transition: transform .2s ease-out, opacity .1s ease-out;
+}
+
+#hamburger.open>#hamburger-top {
+    transform: translateY(275%) rotate(135deg);
+}
+
+#hamburger.open>#hamburger-mid {
+    opacity: 0;
+}
+
+#hamburger.open>#hamburger-bottom {
+    transform: translateY(-275%) rotate(45deg);
+}
+
+
+/* Center Logo ------------------------------------------------ */
+
+#hero-logo {
+    padding-top: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 100%;
+    transition: transform .7s ease-out, opacity .3s linear;
+}
+
+#hero-logo.open {
+    opacity: 0;
+    transition: transform .5s ease-out, opacity .3s linear;
+    transform: translateX(calc(var(--hamburger-width)/2));
+}
+
+
+/* keep big logo if it fits */
+
+
+/* @media screen and (min-width: 91rem) {
+    #hero-logo {
+        transition: transform .7s ease-out, opacity .8s linear;
+    }
+    #hero-logo.open {
+        transition: transform .7s ease-out, opacity .3s linear;
+        opacity: 100%;
+    }
+    #hamburgerArea>h1 {
+        display: block;
+    }
+    #hamburgerArea>h1 {
+        display: none;
+    }
+} */
+
+h1 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15vw;
+    font-weight: 900;
+}
+
+h2 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+}
+
+
+/* VideoBG ---------------------------------------------- */
+
+iframe {
+    position: fixed;
+    top: auto;
+    left: auto;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+
+/* credit to https://alvarotrigo.com/blog/how-to-create-a-youtube-video-background-with-css/ */
+
+@media (min-aspect-ratio: 16/9) {
+    iframe {
+        /* height = 100 * (9 / 16) = 56.25 */
+        height: 60vw;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    iframe {
+        /* width = 100 / (9 / 16) = 177.777777 */
+        width: 190vh;
+    }
+}
